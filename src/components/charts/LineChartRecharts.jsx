@@ -2,7 +2,7 @@ import React from 'react'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts'
 
 
-export default function LineChartRecharts({ data = [] }) {
+function LineChartRecharts({ data = [] }) {
     // expects data: [{ label, value }, ...]
     const formatted = data.map((d, i) => ({ name: d.label || `#${i + 1}`, value: d.value }))
 
@@ -21,3 +21,5 @@ export default function LineChartRecharts({ data = [] }) {
         </div>
     )
 }
+
+export default React.memo(LineChartRecharts)
