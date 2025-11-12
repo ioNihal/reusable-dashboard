@@ -39,7 +39,7 @@
  * @returns {JSX.Element} A styled button element
  */
 export default function Button({ children, variant = 'primary', size = 'md', className = '', ...props }) {
-    const base = 'rounded-lg font-medium transition-all inline-flex items-center justify-center gap-2'
+    const base = 'rounded-md font-medium transition-all inline-flex items-center justify-center gap-2'
     const sizes = {
         sm: 'px-3 py-1 text-xs',
         md: 'px-4 py-2 text-sm',

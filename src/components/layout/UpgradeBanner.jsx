@@ -1,4 +1,5 @@
 import { BsLightningFill } from 'react-icons/bs'
+import Button from '../ui/Button'
 
 /**
  * UpgradeBanner Component - Reusable upgrade promotion banner for sidebar
@@ -9,7 +10,8 @@ import { BsLightningFill } from 'react-icons/bs'
  * @param {Function} props.onUpgradeClick - Callback when upgrade button is clicked
  * @param {string} props.iconColor - Icon color (default: '#ffc400')
  * @param {string} props.iconBgColor - Icon background color (default: 'bg-blue-400')
- * @param {string} props.buttonColor - Button color class (default: 'bg-blue-600 hover:bg-blue-700')
+ * @param {string} props.buttonVariant - Button variant from Button component (default: 'primary')
+ * @param {string} props.buttonSize - Button size from Button component (default: 'md')
  */
 export default function UpgradeBanner({
     title = 'Pick a plan to start scraping and closing deals',
@@ -17,7 +19,8 @@ export default function UpgradeBanner({
     onUpgradeClick = () => {},
     iconColor = '#ffc400',
     iconBgColor = 'bg-blue-400',
-    buttonColor = 'bg-blue-600 hover:bg-blue-700',
+    buttonVariant = 'primary',
+    buttonSize = 'md',
 }) {
     return (
         <div className="rounded-lg bg-linear-to-b from-blue-100 to-blue-50 p-4 space-y-3 relative">
@@ -31,12 +34,14 @@ export default function UpgradeBanner({
             {/* Content */}
             <div className="text-center space-y-3 mt-2">
                 <p className="text-sm font-medium text-gray-900">{title}</p>
-                <button
+                <Button
+                    variant={buttonVariant}
+                    size={buttonSize}
+                    className="w-full"
                     onClick={onUpgradeClick}
-                    className={`w-full px-3 py-2 ${buttonColor} text-white text-sm font-medium rounded-md transition-colors`}
                 >
                     {buttonText}
-                </button>
+                </Button>
             </div>
         </div>
     )
