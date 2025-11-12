@@ -58,7 +58,7 @@ export default function Sidebar({
                     ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                     ${expanded ? expandedWidth : collapsedWidth}`}
             >
-                <nav className="h-full flex flex-col">
+                <nav className="h-full flex flex-col overflow-auto overflow-x-hidden lg:overflow-hidden">
                     {/* Header */}
                     <div className={`bg-white flex ${expanded ? 'justify-between p-4' : 'justify-center p-4'} items-center border-b ${finalTheme.borderColor}`}>
                         {expanded && <h2 className="text-lg font-bold truncate">{headerTitle}</h2>}
