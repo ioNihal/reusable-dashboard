@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { FaChartBar, FaPlus, FaEnvelope, FaCreditCard, FaCog } from 'react-icons/fa'
 import Sidebar from './Sidebar'
 import UpgradeBanner from './UpgradeBanner'
@@ -8,8 +8,9 @@ import Topbar from './Topbar'
 
 export default function DashboardLayout() {
     const { isOpen, toggle } = useSidebarToggle()
+    const navigate = useNavigate()
 
-    // Menu configuration - can be easily customized or moved to a config file
+    // Menu configuration
     const mainMenu = [
         { name: 'Dashboard', path: '/', icon: <FaChartBar /> },
         { name: 'New Scrape', path: '/new', icon: <FaPlus /> },
@@ -30,8 +31,7 @@ export default function DashboardLayout() {
     }
 
     const handleUpgradeClick = () => {
-        // Handle upgrade button click
-        console.log('Upgrade button clicked')
+        navigate('/billing');
     }
 
     return (
