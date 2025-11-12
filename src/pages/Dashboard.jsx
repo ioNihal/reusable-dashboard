@@ -1,0 +1,79 @@
+import Card from '../components/ui/Card'
+import LineChart from '../components/charts/LineChartRecharts.jsx'
+import { dashboardData } from '../data/dashboardData'
+import useMockFetch from '../hooks/useMockFetch'
+import Button from '../components/ui/Button'
+import Badge from '../components/ui/Badge'
+import Table from '../components/ui/Table'
+
+export default function Dashboard() {
+    const { data, loading } = useMockFetch(dashboardData)
+
+    if (loading) return <div className="p-6">Loading dashboard...</div>
+
+    // Recent scrapes table config
+    const scrapeColumns = [
+        { key: 'name', title: 'Scrape Name' },
+        { key: 'account', title: 'Account' },
+        { key: 'status', title: 'Status', render: (r) => <Badge variant={r.status === 'Completed' ? 'completed' : r.status === 'Running' ? 'running' : 'failed'}>{r.status}</Badge> },
+        { key: 'emails', title: 'Emails' },
+        { key: 'verified', title: 'Verified' },
+        { key: 'date', title: 'Date' },
+        { key: 'actions', title: 'Actions', render: () => <button className="text-gray-400 hover:text-gray-600">⋯</button> },
+    ]
+
+    const scrapeData = [
+        { name: 'Fashion influencers', account: '@fashiontrends', status: 'Completed', emails: 1234, verified: 892, date: '2 hours ago' },
+        { name: 'Fashion influencers', account: '@fashiontrends', status: 'Running', emails: 1234, verified: 892, date: '2 hours ago' },
+        { name: 'Fashion influencers', account: '@fashiontrends', status: 'Failed', emails: 1234, verified: 892, date: '2 hours ago' },
+        { name: 'Fashion influencers', account: '@fashiontrends', status: 'Completed', emails: 1234, verified: 892, date: '2 hours ago' },
+    ]
+
+    return (
+        <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+            {/* Page Header */}
+            <div>
+                <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
+                <p className="text-gray-500">Welcome back! Here's what's happening with your business today.</p>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {data.stats.map((s) => (
+                    <Card key={s.label} variant="default" className="p-6">
+                        <div className="text-sm text-gray-500 font-medium mb-2">{s.label}</div>
+                        <div className="text-3xl font-bold text-gray-900 mb-2">{s.value}</div>
+                        {s.action && <Badge variant="action">{s.action}</Badge>}
+                    </Card>
+                ))}
+            </div>
+
+            {/* Chart Section */}
+            <Card variant="default" className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 className="text-lg font-bold text-gray-900">Scraped Emails</h2>
+                        <p className="text-sm text-gray-500">Email scraping performance over time</p>
+                    </div>
+                    <Button variant="primary" size="sm">+ Start New Scrape</Button>
+                </div>
+                <LineChart data={data.trend} />
+            </Card>
+
+            {/* Recent Scrapes Table */}
+            <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h2 className="text-lg font-bold text-gray-900">Recent Scrapes</h2>
+                        <p className="text-sm text-gray-500">Latest scraping activities and their status</p>
+                    </div>
+                </div>
+                <Card variant="default">
+                    <div className="p-0">
+                        <Table columns={scrapeColumns} data={scrapeData} />
+                    </div>
+                </Card>
+            </div>
+        </div>
+    )
+}
