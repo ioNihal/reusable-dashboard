@@ -16,7 +16,7 @@ export default function UserProfile({
     expanded = true,
 }) {
     return (
-        <div className={`border-t border-gray-200 p-4 flex items-center justify-center ${expanded && "gap-2"}`}>
+        <div className={`border-t border-gray-200 p-4 flex items-center ${expanded && "gap-2"}`}>
             <div className={`w-10 h-10 rounded-full ${avatarColor} flex items-center justify-center text-white font-bold text-sm shrink-0`}>
                 {avatarInitial}
             </div>

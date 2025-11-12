@@ -54,7 +54,7 @@ export default function Sidebar({
                 />
             )}
             <aside
-                className={`fixed md:static z-20 h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor} transition-all duration-300 
+                className={`fixed md:static z-20 h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor} 
                     ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                     ${expanded ? expandedWidth : collapsedWidth}`}
             >
@@ -117,7 +117,7 @@ export default function Sidebar({
                                 U
                             </div>
                             {expanded && (
-                                <div className="overflow-hidden transition-all min-w-0">
+                                <div className="overflow-hidden min-w-0">
                                     <h4 className="font-semibold text-sm truncate">User Name</h4>
                                     <span className="text-xs text-gray-600 truncate block">user@example.com</span>
                                 </div>
@@ -147,7 +147,7 @@ function SidebarItem({ icon, text, path }) {
             >
                 <span className="text-lg shrink-0">{icon}</span>
                 <span
-                    className={`overflow-hidden transition-all whitespace-nowrap ${expanded ? 'w-52 ml-3' : 'w-0'}`}
+                    className={`overflow-hidden whitespace-nowrap ${expanded ? 'w-52 ml-3' : 'w-0'}`}
                 >
                     {text}
                 </span>
@@ -157,7 +157,7 @@ function SidebarItem({ icon, text, path }) {
                         className={`
                             absolute left-full rounded-md px-2 py-1 ml-6
                             bg-gray-100 text-gray-900 text-sm font-medium
-                            invisible opacity-0 -translate-x-3 transition-all
+                            invisible opacity-0 -translate-x-3 
                             group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 whitespace-nowrap z-50
                         `}
                     >
