@@ -53,7 +53,7 @@ export default function Table({ columns = [], data = [] }) {
                 <thead className="bg-gray-50 border-b border-gray-200">
                     <tr className="text-left text-sm font-semibold text-gray-700">
                         {columns.map((c) => (
-                            <th key={c.key} className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">{c.title}</th>
+                            <th key={c.key} className="px-4 py-3 text-xs font-semibold text-gray-600 tracking-wider">{c.title}</th>
                         ))}
                     </tr>
                 </thead>

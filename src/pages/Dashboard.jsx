@@ -6,6 +6,7 @@ import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
 import Table from '../components/ui/Table'
 import { FaPlus } from 'react-icons/fa'
+import { HiDotsVertical } from 'react-icons/hi'
 
 
 export default function Dashboard() {
@@ -21,7 +22,7 @@ export default function Dashboard() {
         { key: 'emails', title: 'Emails' },
         { key: 'verified', title: 'Verified' },
         { key: 'date', title: 'Date' },
-        { key: 'actions', title: 'Actions', render: () => <button className="text-gray-400 hover:text-gray-600">⋯</button> },
+        { key: 'actions', title: 'Actions', render: () => <button className="text-gray-400 hover:text-gray-600 cursor-pointer"><HiDotsVertical /></button> },
     ]
 
     const scrapeData = [
