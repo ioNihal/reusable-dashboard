@@ -22,6 +22,7 @@ export default function Topbar({ onMenuClick }) {
             <Button
                 variant="primary"
                 size="md"
+                hideInMobile={true}
                 onClick={handleUpgradeClick}
                 className="ml-auto mr-4"
             >

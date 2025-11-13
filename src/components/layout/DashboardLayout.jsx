@@ -35,7 +35,7 @@ export default function DashboardLayout() {
     }
 
     return (
-        <div className="flex h-screen overflow-hidden bg-gray-50">
+        <div className="flex h-screen overflow-hidden bg-gray-50 isolate">
             <Sidebar
                 isOpen={isOpen}
                 toggleSidebar={toggle}
@@ -50,9 +50,9 @@ export default function DashboardLayout() {
             />
             <div className="flex-1 flex flex-col">
                 <Topbar onMenuClick={toggle} />
-                <div className="flex-1 overflow-y-auto bg-white">
+                {/* <div className="flex-1 overflow-y-auto bg-white">
                     <Outlet />
-                </div>
+                </div> */}
             </div>
         </div>
     )

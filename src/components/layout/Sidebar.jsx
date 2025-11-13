@@ -49,12 +49,12 @@ export default function Sidebar({
             {/* Mobile overlay */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/10 md:hidden z-10"
+                    className="fixed inset-0 bg-black/10 md:hidden z-20"
                     onClick={toggleSidebar}
                 />
             )}
             <aside
-                className={`fixed md:static z-20 h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor} 
+                className={`fixed md:static z-30 h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor} 
                     ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                     ${expanded ? expandedWidth : collapsedWidth}`}
             >

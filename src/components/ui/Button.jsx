@@ -33,13 +33,14 @@
  *   - 'md': Medium button (text-sm, px-4 py-2)
  *   - 'lg': Large button (text-base, px-6 py-3)
  *   - 'full': Full width button (w-full)
+ * @param {boolean} [hideInMobile=false] - Whether to hide the button on mobile screens
  * @param {string} [className=''] - Additional CSS classes to apply
  * @param {Object} props - Standard HTML button attributes (onClick, disabled, type, etc.)
  * 
  * @returns {JSX.Element} A styled button element
  */
-export default function Button({ children, variant = 'primary', size = 'md', className = '', ...props }) {
-    const base = 'rounded-sm font-medium transition-all inline-flex items-center justify-center gap-2 cursor-pointer'
+export default function Button({ children, variant = 'primary', size = 'md', hideInMobile = false, className = '', ...props }) {
+    const base = 'rounded-sm font-medium transition-all items-center justify-center gap-2 cursor-pointer'
     const sizes = {
         sm: 'px-3 py-1 text-xs',
         md: 'px-4 py-2 text-sm',
@@ -58,7 +59,7 @@ export default function Button({ children, variant = 'primary', size = 'md', cla
     const variantClass = variants[variant] || variants.primary
 
     return (
-        <button className={`${base} ${sizeClass} ${variantClass} ${className}`} {...props}>
+        <button className={`${base} ${sizeClass} ${variantClass} ${hideInMobile ? "hidden md:inline-flex" : "inline-flex"} ${className}`} {...props}>
             {children}
         </button>
     )
