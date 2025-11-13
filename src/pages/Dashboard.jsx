@@ -86,7 +86,7 @@ export default function Dashboard() {
                     {/* Stats Grid */}
                     <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {data.stats.map((s) => (
-                            <Card key={s.label} className="px-4 py-3 flex flex-col gap-3">
+                            <Card key={s.label} className="px-4 py-3 flex flex-col justify-between gap-3">
                                 <h2 className="text-gray-900 font-bold">{s.label}</h2>
                                 <p className="text-blue-600 text-3xl font-semibold">{s.value}</p>
                                 {s.action && <Badge variant="action">{s.action}</Badge>}
