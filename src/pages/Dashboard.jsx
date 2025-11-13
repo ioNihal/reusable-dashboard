@@ -1,5 +1,5 @@
 import Card from '../components/ui/Card'
-import LineChart from '../components/charts/LineChartRecharts.jsx'
+import LineChart from '../components/charts/LineChart.jsx'
 import { dashboardData } from '../data/dashboardData'
 import useMockFetch from '../hooks/useMockFetch'
 import Button from '../components/ui/Button'
