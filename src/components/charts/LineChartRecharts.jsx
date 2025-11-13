@@ -1,74 +1,106 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
-function LineChartRecharts({ data = [] }) {
+/**
+ * LineChartRecharts Component
+ * A custom SVG-based line chart with smooth curves, gradient fill, and interactive tooltips.
+ * 
+ * @param {Object} props
+ * @param {Array<{label: string, value: number}>} [props.data=[]] - Chart data
+ * @param {number} [props.width=900] - SVG width in pixels
+ * @param {number} [props.height=250] - SVG height in pixels
+ * @param {Object} [props.padding={top: 20, right: 30, bottom: 40, left: 50}] - Inner padding
+ * @param {string} [props.lineColor='#2563eb'] - Line stroke color
+ * @param {string} [props.gradientColor='#2563eb'] - Gradient fill color
+ * @param {number} [props.gridLines=5] - Number of Y-axis grid lines
+ * @param {string} [props.tooltipLabel='Email'] - Label for tooltip value
+ * @param {string} [props.emptyMessage='No data available'] - Empty state message
+ */
+function LineChartRecharts({
+    data = [],
+    width = 900,
+    height = 250,
+    padding = { top: 20, right: 30, bottom: 40, left: 50 },
+    lineColor = '#2563eb',
+    gradientColor = '#2563eb',
+    gridLines = 5,
+    tooltipLabel = 'Email',
+    emptyMessage = 'No data available',
+}) {
     const [hoveredIndex, setHoveredIndex] = useState(null)
 
+    // Memoized calculations - placed before early return
+    const { points, pathData, areaPath, gridValues, chartWidth, chartHeight } = useMemo(() => {
+        // Format data
+        const formatted = data.map((d, i) => ({
+            name: d.label || `Day ${i + 1}`,
+            value: d.value,
+        }))
+
+        const chartWidth = width - padding.left - padding.right
+        const chartHeight = height - padding.top - padding.bottom
+
+        // Calculate min and max values
+        const values = formatted.map((d) => d.value)
+        const maxValue = Math.max(...values)
+        const minValue = Math.min(...values)
+        const range = maxValue - minValue || maxValue
+
+        // Scale functions
+        const scaleX = (index) => padding.left + (index / (formatted.length - 1)) * chartWidth
+        const scaleY = (value) => padding.top + chartHeight - ((value - minValue) / range) * chartHeight
+
+        // Generate points
+        const points = formatted.map((d, i) => ({
+            x: scaleX(i),
+            y: scaleY(d.value),
+            ...d,
+            index: i,
+        }))
+
+        // Create SVG path for line with smooth Bezier curves
+        const pathData = points
+            .map((p, i) => {
+                if (i === 0) return `M ${p.x} ${p.y}`
+
+                const prev = points[i - 1]
+                const cp1x = prev.x + (p.x - prev.x) / 3
+                const cp1y = prev.y
+                const cp2x = prev.x + (p.x - prev.x) * (2 / 3)
+                const cp2y = p.y
+
+                return `C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${p.x} ${p.y}`
+            })
+            .join(' ')
+
+        // Create area path for gradient fill
+        const areaPath =
+            pathData +
+            ` L ${points[points.length - 1].x} ${padding.top + chartHeight} L ${points[0].x} ${padding.top + chartHeight} Z`
+
+        // Y-axis grid values
+        const gridValues = Array.from({ length: gridLines }, (_, i) => {
+            const val = minValue + (range / (gridLines - 1)) * i
+            return Math.round(val)
+        })
+
+        return { points, pathData, areaPath, gridValues, chartHeight }
+    }, [data, width, height, padding, gridLines])
+
     if (data.length === 0) {
-        return <div className="w-full h-64 flex items-center justify-center text-gray-400">No data available</div>
+        return (
+            <div className="w-full h-64 flex items-center justify-center text-gray-400">
+                {emptyMessage}
+            </div>
+        )
     }
-
-    // Format data
-    const formatted = data.map((d, i) => ({ 
-        name: d.label || `Day ${i + 1}`, 
-        value: d.value 
-    }))
-
-    // Calculate dimensions
-    const width = 900
-    const height = 250
-    const padding = { top: 20, right: 30, bottom: 40, left: 50 }
-    const chartWidth = width - padding.left - padding.right
-    const chartHeight = height - padding.top - padding.bottom
-
-    // Calculate min and max values
-    const values = formatted.map(d => d.value)
-    const maxValue = Math.max(...values)
-    const minValue = Math.min(...values)
-    const range = maxValue - minValue || maxValue
-
-    // Scale functions
-    const scaleX = (index) => padding.left + (index / (formatted.length - 1)) * chartWidth
-    const scaleY = (value) => padding.top + chartHeight - ((value - minValue) / range) * chartHeight
-
-    // Generate points for line
-    const points = formatted.map((d, i) => ({
-        x: scaleX(i),
-        y: scaleY(d.value),
-        ...d,
-        index: i
-    }))
-
-    // Create path for line
-    const pathData = points.map((p, i) => {
-        if (i === 0) return `M ${p.x} ${p.y}`
-        
-        // Smooth curve using quadratic Bezier
-        const prev = points[i - 1]
-        const cp1x = prev.x + (p.x - prev.x) / 3
-        const cp1y = prev.y
-        const cp2x = prev.x + (p.x - prev.x) * 2 / 3
-        const cp2y = p.y
-        
-        return `C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${p.x} ${p.y}`
-    }).join(' ')
-
-    // Create area path for gradient fill
-    const areaPath = pathData + ` L ${points[points.length - 1].x} ${padding.top + chartHeight} L ${points[0].x} ${padding.top + chartHeight} Z`
-
-    // Y-axis grid lines and labels
-    const gridLines = 5
-    const gridValues = Array.from({ length: gridLines }, (_, i) => {
-        const val = minValue + (range / (gridLines - 1)) * i
-        return Math.round(val)
-    })
 
     return (
         <div className="w-full overflow-x-auto">
             <svg viewBox={`0 0 ${width} ${height}`} style={{ minWidth: '100%', height: 'auto' }}>
                 <defs>
                     <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#2563eb" stopOpacity={0.3} />
-                        <stop offset="100%" stopColor="#2563eb" stopOpacity={0} />
+                        <stop offset="0%" stopColor={gradientColor} stopOpacity={0.3} />
+                        <stop offset="100%" stopColor={gradientColor} stopOpacity={0} />
                     </linearGradient>
                 </defs>
 
@@ -112,7 +144,7 @@ function LineChartRecharts({ data = [] }) {
                 {/* Line */}
                 <path
                     d={pathData}
-                    stroke="#2563eb"
+                    stroke={lineColor}
                     strokeWidth="2.5"
                     fill="none"
                     strokeLinecap="round"
@@ -126,8 +158,8 @@ function LineChartRecharts({ data = [] }) {
                         <circle
                             cx={p.x}
                             cy={p.y}
-                            r={hoveredIndex === i ? 5 : 3.5}
-                            fill="#2563eb"
+                            r={hoveredIndex === p.index ? 5 : 3.5}
+                            fill={lineColor}
                             stroke="#fff"
                             strokeWidth="2"
                             className="transition-all duration-150"
@@ -150,14 +182,14 @@ function LineChartRecharts({ data = [] }) {
                             cy={p.y}
                             r="15"
                             fill="transparent"
-                            onMouseEnter={() => setHoveredIndex(i)}
+                            onMouseEnter={() => setHoveredIndex(p.index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                             style={{ cursor: 'pointer' }}
                             pointerEvents="auto"
                         />
 
                         {/* Tooltip on hover */}
-                        {hoveredIndex === i && (
+                        {hoveredIndex === p.index && (
                             <g pointerEvents="none">
                                 <rect
                                     x={p.x - 50}
@@ -188,8 +220,8 @@ function LineChartRecharts({ data = [] }) {
                                     fontWeight="500"
                                     fill="#6b7280"
                                 >
-                                    <tspan>Email: </tspan>
-                                    <tspan fill="#2563eb" fontWeight="600">{p.value}</tspan>
+                                    <tspan>{tooltipLabel}: </tspan>
+                                    <tspan fill={lineColor} fontWeight="600">{p.value}</tspan>
                                 </text>
                             </g>
                         )}
