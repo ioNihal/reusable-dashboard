@@ -5,6 +5,8 @@ import useMockFetch from '../hooks/useMockFetch'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
 import Table from '../components/ui/Table'
+import { FaPlus } from 'react-icons/fa'
+
 
 export default function Dashboard() {
     const { data, loading } = useMockFetch(dashboardData)
@@ -49,13 +51,13 @@ export default function Dashboard() {
             </div>
 
             {/* Chart Section */}
-            <Card variant="default" className="p-6">
-                <div className="flex items-center justify-between mb-6">
+            <Card variant="default" className="p-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-0 mb-6">
                     <div>
-                        <h2 className="text-lg font-bold text-gray-900">Scraped Emails</h2>
+                        <h2 className="text-lg font-semibold text-gray-900">Scraped Emails</h2>
                         <p className="text-sm text-gray-500">Email scraping performance over time</p>
                     </div>
-                    <Button variant="primary" size="sm">+ Start New Scrape</Button>
+                    <Button variant="primary" size="md"><FaPlus />Start New Scrape</Button>
                 </div>
                 <LineChart data={data.trend} />
             </Card>

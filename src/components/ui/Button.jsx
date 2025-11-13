@@ -39,7 +39,7 @@
  * 
  * @returns {JSX.Element} A styled button element
  */
-export default function Button({ children, variant = 'primary', size = 'md', hideInMobile = false, className = '', ...props }) {
+export default function Button({ children, variant = 'primary', size = '', hideInMobile = false, className = '', ...props }) {
     const base = 'rounded-sm font-medium transition-all items-center justify-center gap-2 cursor-pointer'
     const sizes = {
         sm: 'px-3 py-1 text-xs',
