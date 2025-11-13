@@ -34,9 +34,10 @@ export default function Badge({ children, className = '', variant = 'default' })
         running: 'bg-blue-100 text-blue-700 border border-blue-300',
         pending: 'bg-yellow-100 text-yellow-700 border border-yellow-300',
         failed: 'bg-red-100 text-red-700 border border-red-300',
-        action: 'bg-blue-50 text-blue-600 border border-blue-200',
+        action: 'bg-blue-50 text-blue-600 border border-blue-100',
     }
-    
+
     const variantClass = variants[variant] || variants.default
-    return <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${variantClass} ${className}`}>{children}</span>
+    return <span className={`inline-block w-max px-3 py-1 text-xs font-medium rounded-sm 
+        ${variantClass} ${className}`}>{children}</span>
 }

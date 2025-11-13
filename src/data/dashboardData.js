@@ -2,10 +2,10 @@
 // Minimal dashboard data used by src/pages/Dashboard.jsx
 export const dashboardData = {
   stats: [
-    { label: 'Users', value: 1240 },
-    { label: 'New Leads', value: 84 },
-    { label: 'Conversions', value: 32 },
-    { label: 'Revenue', value: '$12.3k' },
+    { label: 'Total Scrapes', value: "12,000", action: "Action" },
+    { label: 'Verified Emails', value: "9,000" },
+    { label: 'Running Jobs', value: "3" },
+    { label: 'Credits Remaining', value: '1,500' },
   ],
   // trend: an array expected by LineChartRecharts ({ label, value })
   trend: [
