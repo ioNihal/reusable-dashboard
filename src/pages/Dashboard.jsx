@@ -7,12 +7,27 @@ import Badge from '../components/ui/Badge'
 import Table from '../components/ui/Table'
 import { FaPlus } from 'react-icons/fa'
 import { HiDotsVertical } from 'react-icons/hi'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Dashboard() {
     const { data, loading } = useMockFetch(dashboardData)
 
-    if (loading) return <div className="p-6">Loading dashboard...</div>
+    const navigate = useNavigate();
+
+    const handleStartNewScrape = () => {
+        navigate("/new")
+    }
+
+    if (loading) return (
+        <div className="p-4 md:p-6 min-h-screen grid place-items-center bg-gray-50">
+            <div className="relative w-12 h-12 animate-bounce">
+                <div className="absolute inset-0 border-4 border-blue-400 rounded-full opacity-40"></div>
+                <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+            </div>
+        </div>
+    );
+
 
     // Recent scrapes table config
     const scrapeColumns = [
@@ -58,25 +73,26 @@ export default function Dashboard() {
                         <h2 className="text-lg font-semibold text-gray-900">Scraped Emails</h2>
                         <p className="text-sm text-gray-500">Email scraping performance over time</p>
                     </div>
-                    <Button variant="primary" size="md"><FaPlus />Start New Scrape</Button>
+                    <Button variant="primary" size="md" onClick={handleStartNewScrape}><FaPlus />Start New Scrape</Button>
                 </div>
                 <LineChart data={data.trend} />
             </Card>
 
             {/* Recent Scrapes Table */}
-            <div className="space-y-4">
+            <Card variant="default" className="p-4 space-y-3">
                 <div className="flex items-center justify-between">
                     <div>
                         <h2 className="text-lg font-bold text-gray-900">Recent Scrapes</h2>
                         <p className="text-sm text-gray-500">Latest scraping activities and their status</p>
                     </div>
+                    <Button variant="primary" size="md" onClick={handleStartNewScrape}><FaPlus />Start New Scrape</Button>
                 </div>
                 <Card variant="default">
                     <div className="p-0">
                         <Table columns={scrapeColumns} data={scrapeData} />
                     </div>
                 </Card>
-            </div>
+            </Card>
         </div>
     )
 }

@@ -1,8 +1,8 @@
-// src/hooks/useMockFetch.js (replace/augment)
+
 import { useState, useEffect } from 'react'
 import { fetchMock } from '../services/api'
 
-export default function useMockFetch(data, delay = 600) {
+export default function useMockFetch(data, delay = 400) {
   const [loading, setLoading] = useState(true)
   const [result, setResult] = useState(null)
 
