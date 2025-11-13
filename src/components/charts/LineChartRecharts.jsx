@@ -29,7 +29,7 @@ function LineChartRecharts({
     const [hoveredIndex, setHoveredIndex] = useState(null)
 
     // Memoized calculations - placed before early return
-    const { points, pathData, areaPath, gridValues, chartWidth, chartHeight } = useMemo(() => {
+    const { points, pathData, areaPath, gridValues, chartHeight } = useMemo(() => {
         // Format data
         const formatted = data.map((d, i) => ({
             name: d.label || `Day ${i + 1}`,
