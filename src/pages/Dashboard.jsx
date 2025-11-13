@@ -33,8 +33,8 @@ export default function Dashboard() {
                             row.status === "Completed"
                                 ? "completed"
                                 : row.status === "Running"
-                                ? "running"
-                                : "failed"
+                                    ? "running"
+                                    : "failed"
                         }
                     >
                         {row.status}
@@ -66,7 +66,7 @@ export default function Dashboard() {
 
     return (
         <div className="p-4 md:p-6 space-y-6 bg-gray-50 min-h-screen max-w-screen">
-            
+
             {/* Page Header */}
             <header>
                 <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
@@ -110,8 +110,8 @@ export default function Dashboard() {
 
                     {/* Recent Scrapes */}
                     <Card className="p-4 space-y-3">
-                        <div className="flex items-center justify-between">
-                            <div>
+                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-5 ">
+                            <div className="mb-3">
                                 <h2 className="text-lg font-bold text-gray-900">Recent Scrapes</h2>
                                 <p className="text-sm text-gray-500">Latest scraping activity & status</p>
                             </div>
