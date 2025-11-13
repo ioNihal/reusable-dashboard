@@ -81,7 +81,7 @@ function LineChart({
         const gridValues = Array.from({ length: gridLines }, (_, i) => {
             const val = minValue + (range / (gridLines - 1)) * i
             return Math.round(val)
-        })
+        }).sort((a, b) => b - a)
 
         return { points, pathData, areaPath, gridValues, chartHeight }
     }, [data, width, height, padding, gridLines])
