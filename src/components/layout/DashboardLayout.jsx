@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import { FaChartBar, FaPlus, FaEnvelope, FaCreditCard, FaCog } from 'react-icons/fa'
 import Sidebar from './Sidebar'
-import UpgradeBanner from './UpgradeBanner'
-import UserProfile from './UserProfile'
+import UpgradeBanner from '../ui/UpgradeBanner'
+import UserProfile from '../ui/UserProfile'
 import useSidebarToggle from '../../hooks/useSidebarToggle'
 import Topbar from './Topbar'
 

@@ -1,5 +1,5 @@
 import { BsLightningFill } from 'react-icons/bs'
-import Button from '../ui/Button'
+import Button from './Button'
 
 /**
  * UpgradeBanner Component - Reusable upgrade promotion banner for sidebar

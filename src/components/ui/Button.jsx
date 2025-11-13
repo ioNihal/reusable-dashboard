@@ -22,13 +22,13 @@
  * </Button>
  * 
  * @param {React.ReactNode} children - The content to display inside the button
- * @param {string} [variant='primary'] - The style variant to use
+ * @param {'primary' | 'secondary' | 'outline' | 'danger' | 'success'} [variant='primary'] - The style variant to use
  *   - 'primary': Blue background, for main actions
  *   - 'secondary': Gray background, for secondary actions
  *   - 'outline': Bordered style, for tertiary actions
  *   - 'danger': Red background, for destructive actions
  *   - 'success': Green background, for positive actions
- * @param {string} [size='md'] - The size of the button
+ * @param {'sm' | 'md' | 'lg' | 'full'} [size='md'] - The size of the button
  *   - 'sm': Small button (text-xs, px-3 py-1)
  *   - 'md': Medium button (text-sm, px-4 py-2)
  *   - 'lg': Large button (text-base, px-6 py-3)
@@ -39,7 +39,7 @@
  * @returns {JSX.Element} A styled button element
  */
 export default function Button({ children, variant = 'primary', size = 'md', className = '', ...props }) {
-    const base = 'rounded-md font-medium transition-all inline-flex items-center justify-center gap-2'
+    const base = 'rounded-sm font-medium transition-all inline-flex items-center justify-center gap-2 cursor-pointer'
     const sizes = {
         sm: 'px-3 py-1 text-xs',
         md: 'px-4 py-2 text-sm',
