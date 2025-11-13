@@ -30,7 +30,7 @@ export default function Dashboard() {
     ]
 
     return (
-        <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+        <div className="p-4 md:p-6 space-y-6 bg-gray-50 min-h-screen max-w-screen">
             {/* Page Header */}
             <div>
                 <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
@@ -38,9 +38,9 @@ export default function Dashboard() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {data.stats.map((s) => (
-                    <Card key={s.label} variant="default" className="px-4 py-3 flex flex-col gap-2 justify-between">
+                    <Card key={s.label} variant="default" className="px-4 py-3 flex flex-col gap-4 md:gap-3 justify-between">
                         <h2 className="text-gray-900 font-bold">{s.label}</h2>
                         <p className="text-blue-600 text-3xl font-semibold">{s.value}</p>
                         {s.action && <Badge variant="action">{s.action}</Badge>}
