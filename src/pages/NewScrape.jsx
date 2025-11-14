@@ -1,8 +1,15 @@
 import InputField from '../components/ui/InputField'
 import Button from '../components/ui/Button'
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import ProgressBar from '../components/ui/ProgressBar';
+import ScrapeResultCard from '../components/ui/ScrapeResultCard';
 
 export default function NewScrape() {
+    const [progress, setProgress] = useState(0);
+    const [isScraping, setIsScraping] = useState(false);
+    const [scrapeDone, setScrapeDone] = useState(false);
+
 
     const {
         register,
@@ -13,7 +20,29 @@ export default function NewScrape() {
 
     const onSubmit = (data) => {
         console.log("Submitting data:", data);
+        startScraping();
     };
+
+
+    const startScraping = () => {
+        setIsScraping(true);
+        setScrapeDone(false);
+
+        let value = 0;
+        const timer = setInterval(() => {
+            value += 5;
+            setProgress(value);
+
+            if (value >= 100) {
+                clearInterval(timer);
+                setScrapeDone(true);
+                setIsScraping(false);
+                setProgress(0);
+            }
+        }, 300);
+    };
+
+
 
     return (
         <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
@@ -22,6 +51,31 @@ export default function NewScrape() {
                 <h1 className="text-2xl font-bold text-gray-900">Start Scraping</h1>
                 <p className="text-gray-500">Target an account and scrape its followers and following</p>
             </div>
+
+            {isScraping && (
+                <ProgressBar
+                    progress={progress}
+                    statusText="Scraping in progress..."
+                    onCancel={() => {
+                        setIsScraping(false);
+                        setProgress(0);
+                    }}
+                    onPause={() => console.log("Paused")}
+                />
+            )}
+
+            {scrapeDone && (
+                <ScrapeResultCard
+                    account="@Travel"
+                    type="Followings"
+                    totalEmails={50}
+                    verifiedEmails={12}
+                    status="completed"
+                    onExportCSV={() => console.log("Export CSV")}
+                    onExportXLS={() => console.log("Export XLS")}
+                />
+            )}
+
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
