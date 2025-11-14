@@ -44,7 +44,7 @@ export default function NewScrape() {
                         min="0"
                         placeholder="Enter email limits"
                         {...register("emailLimit", {
-                            required: "Required",
+                            required: "This field is Required",
                             min: { value: 1, message: "Must be greater than 0" }
                         })}
                         error={errors.emailLimit?.message}
