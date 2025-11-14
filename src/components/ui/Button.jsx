@@ -45,7 +45,7 @@ export default function Button({ children, variant = 'primary', size = '', hideI
         sm: 'px-3 py-1 text-xs',
         md: 'px-4 py-2 text-sm',
         lg: 'px-6 py-3 text-base',
-        full: 'w-full px-4 py-3 text-base',
+        full: 'w-full px-4 py-2 text-base',
     }
     const variants = {
         primary: 'bg-blue-600 text-white hover:bg-blue-700',

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Card from '../components/ui/Card'
 import Table from '../components/ui/Table'
-import Input from '../components/ui/Input'
+// import Input from '../components/ui/Input'
 import Select from '../components/ui/Select'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
@@ -119,7 +119,7 @@ export default function Results() {
             {/* Controls */}
             <div className="flex flex-col md:flex-row gap-3 items-end">
                 <div className="flex-1">
-                    <Input placeholder="Search by username, or email" icon={<FaSearch />} />
+                    {/* <Input placeholder="Search by username, or email" icon={<FaSearch />} /> */}
                 </div>
                 <label className="flex items-center gap-2 text-sm cursor-pointer">
                     <input type="checkbox" className="w-4 h-4 rounded" onChange={() => {}} />

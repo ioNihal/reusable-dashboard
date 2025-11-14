@@ -1,6 +1,4 @@
-import Card from '../components/ui/Card'
-import Input from '../components/ui/Input'
-import Select from '../components/ui/Select'
+import InputField from '../components/ui/InputField'
 import Button from '../components/ui/Button'
 
 export default function NewScrape() {
@@ -13,31 +11,40 @@ export default function NewScrape() {
             </div>
 
             {/* Form Card */}
-            <Card variant="default" className="p-6 max-w-2xl">
+            <div>
                 <div className="space-y-6">
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-900 mb-4">Instagram account or Hashtag</label>
-                        <Input placeholder="Enter Instagram account or Hashtag" />
-                    </div>
+
+                    <InputField
+                        label="Instagram account or Hashtag"
+                        type="text"
+                        placeholder="Enter Instagram account or Hashtag"
+                        variant="default"
+                    />
 
                     <div className="grid grid-cols-2 gap-6">
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-900 mb-4">Email Limits</label>
-                            <Input placeholder="Enter email limits" />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-900 mb-4">Scrape Type</label>
-                            <Select placeholder="Select scrape type">
-                                <option value="">Select scrape type</option>
-                                <option value="followings">Followings</option>
-                                <option value="followers">Followers</option>
-                            </Select>
-                        </div>
+                        <InputField
+                            label="Email Limits"
+                            type="number"
+                            placeholder="Enter email limits"
+                            variant="default"
+                            min="0"
+                        />
+
+                        <InputField
+                            label="Scrape Type"
+                            type="select"
+                            options={[
+                                { label: "Followings", value: "followings" },
+                                { label: "Followers", value: "followers" },
+                            ]}
+                            defaultSelect="Select scrape type"
+                            variant="default"
+                        />
                     </div>
 
-                    <Button variant="primary" size="full" className="mt-8">Start Scraping</Button>
+                    <Button variant="primary" size="full" className="mt-2 py-2.5">Start Scraping</Button>
                 </div>
-            </Card>
-        </div>
+            </div >
+        </div >
     )
 }
