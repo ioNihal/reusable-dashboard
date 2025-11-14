@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ProgressBar from '../components/ui/ProgressBar';
 import ScrapeResultCard from '../components/ui/ScrapeResultCard';
+import { useToast } from "../components/ui/ToastContext";
+
 
 export default function NewScrape() {
     const [progress, setProgress] = useState(0);
     const [isScraping, setIsScraping] = useState(false);
     const [scrapeDone, setScrapeDone] = useState(false);
 
+    const { showToast } = useToast();
 
     const {
         register,
@@ -38,6 +41,13 @@ export default function NewScrape() {
                 setScrapeDone(true);
                 setIsScraping(false);
                 setProgress(0);
+
+                showToast({
+                    title: "Scraping Completed",
+                    message: "Your scraping task has finished successfully.",
+                    variant: "success",
+                    duration: 3000
+                });
             }
         }, 300);
     };
