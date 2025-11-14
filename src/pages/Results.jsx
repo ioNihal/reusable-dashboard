@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Card from '../components/ui/Card'
 import Table from '../components/ui/Table'
 // import Input from '../components/ui/Input'
-import Select from '../components/ui/Select'
+// import Select from '../components/ui/Select'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
 import { scrapeResults } from '../data/scrapeResults'
@@ -125,11 +125,11 @@ export default function Results() {
                     <input type="checkbox" className="w-4 h-4 rounded" onChange={() => {}} />
                     <span className="text-gray-700">Verified emails only</span>
                 </label>
-                <Select>
+                {/* <Select>
                     <option value="">Sort by Username</option>
                     <option value="email">Sort by Email</option>
                     <option value="status">Sort by Status</option>
-                </Select>
+                </Select> */}
             </div>
 
             {/* Empty State or Table */}
