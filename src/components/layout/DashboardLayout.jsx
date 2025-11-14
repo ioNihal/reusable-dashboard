@@ -1,11 +1,13 @@
 import { Outlet, useNavigate } from 'react-router-dom'
-import { FaChartBar, FaCreditCard, FaCog, FaHistory } from 'react-icons/fa'
+import { FaChartBar, FaCreditCard, FaCog, FaHistory, FaHome } from 'react-icons/fa'
 import Sidebar from './Sidebar'
 import UpgradeBanner from '../ui/UpgradeBanner'
 import UserProfile from '../ui/UserProfile'
 import useSidebarToggle from '../../hooks/useSidebarToggle'
 import Topbar from './Topbar'
 import { PiFilePlus } from 'react-icons/pi'
+import { BiHomeAlt } from 'react-icons/bi'
+import { MdHistory } from 'react-icons/md'
 
 
 export default function DashboardLayout() {
@@ -14,9 +16,9 @@ export default function DashboardLayout() {
 
     // Menu configuration
     const mainMenu = [
-        { name: 'Dashboard', path: '/', icon: <FaChartBar /> },
+        { name: 'Dashboard', path: '/', icon: <BiHomeAlt /> },
         { name: 'New Scrape', path: '/new', icon: <PiFilePlus /> },
-        { name: 'Scrape History', path: '/results', icon: <FaHistory /> },
+        { name: 'Scrape History', path: '/results', icon: <MdHistory /> },
     ]
 
     const bottomMenu = [

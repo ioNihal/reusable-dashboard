@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ProgressBar from '../components/ui/ProgressBar';
 import ScrapeResultCard from '../components/ui/ScrapeResultCard';
-import { useToast } from "../components/ui/ToastContext";
+import { useToast } from '../hooks/useToast';
+
 
 
 export default function NewScrape() {

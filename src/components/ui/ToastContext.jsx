@@ -1,7 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
 import ToastContainer from "./ToastContainer";
-
-const ToastContext = createContext(null);
+import { ToastContext } from "../../hooks/useToast";
 
 export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
@@ -10,7 +9,6 @@ export function ToastProvider({ children }) {
     const id = Date.now();
     setToasts((prev) => [...prev, { id, ...toast }]);
 
-    // auto dismiss
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, toast.duration || 3000);
@@ -22,8 +20,4 @@ export function ToastProvider({ children }) {
       <ToastContainer toasts={toasts} />
     </ToastContext.Provider>
   );
-}
-
-export function useToast() {
-  return useContext(ToastContext);
 }
