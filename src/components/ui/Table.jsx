@@ -52,9 +52,12 @@ export default function Table({ columns = [], data = [] }) {
             <table className="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <thead className="bg-gray-50 border-b border-gray-200">
                     <tr className="text-left text-sm font-semibold text-gray-700">
-                        {columns.map((c) => (
-                            <th key={c.key} className="px-4 py-3 text-xs font-semibold text-gray-600 tracking-wider">{c.title}</th>
-                        ))}
+                        {columns.map((c) => {
+                            if(c.hidden) return null;
+                            return (
+                                <th key={c.key} className="px-4 py-3 text-xs font-semibold text-gray-600 tracking-wider">{c.title}</th>
+                            );
+                        })}
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">

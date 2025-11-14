@@ -18,7 +18,7 @@ export default function DashboardLayout() {
     const mainMenu = [
         { name: 'Dashboard', path: '/', icon: <BiHomeAlt /> },
         { name: 'New Scrape', path: '/new', icon: <PiFilePlus /> },
-        { name: 'Scrape History', path: '/results', icon: <MdHistory /> },
+        { name: 'Scrape History', path: '/history', icon: <MdHistory /> },
     ]
 
     const bottomMenu = [
