@@ -113,7 +113,7 @@ export default function ScrapeHistory() {
     ];
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-6 max-w-screen">
 
             {/* Header + Bulk Actions */}
             <div className="flex justify-between items-start flex-wrap gap-4">
