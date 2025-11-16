@@ -16,9 +16,7 @@ export default function ScrapeHistory() {
     const [isEmpty, setIsEmpty] = useState(true);
     const [page, setPage] = useState(1);
     const [verifiedOnly, setVerifiedOnly] = useState(false);
-
-    // Fake pagination limit
-    const perPage = 5;
+    const [search, setSearch] = useState("");
 
 
     useEffect(() => {
@@ -68,10 +66,6 @@ export default function ScrapeHistory() {
         setIsEmpty(data.length === 0);
     }, []);
 
-
-    // Fake pagination logic
-    const totalPages = Math.ceil(scrapeData.length / perPage);
-    const paginatedData = scrapeData.slice((page - 1) * perPage, page * perPage);
 
 
     const toggleRow = (id) => {
@@ -149,6 +143,24 @@ export default function ScrapeHistory() {
         },
     ];
 
+
+
+    const filteredData = scrapeData.filter(item => {
+        const query = search.toLowerCase();
+
+        return (
+            item.account.toLowerCase().includes(query) ||
+            item.type.toLowerCase().includes(query) ||
+            String(item.totalEmails).includes(query) ||
+            item.status.toLowerCase().includes(query)
+        );
+    });
+
+    const perPage = 5;
+    const totalPages = Math.ceil(filteredData.length / perPage);
+    const paginatedData = filteredData.slice((page - 1) * perPage, page * perPage);
+
+
     return (
         <div className="p-6 space-y-6 max-w-screen">
 
@@ -173,6 +185,11 @@ export default function ScrapeHistory() {
                         type="text"
                         placeholder="Search by username, or type"
                         className="pl-10 bg-gray-100 border-gray-200 w-full"
+                        value={search}
+                        onChange={(e) => {
+                            setSearch(e.target.value);
+                            setPage(1);
+                        }}
                     />
                 </div>
 
@@ -211,23 +228,33 @@ export default function ScrapeHistory() {
             )}
 
 
+            {filteredData.length <= 0 && (
+                <div className="flex flex-col items-center mt-20 text-center">
+                    <span className="text-gray-400 text-6xl">📄</span>
+                    <p className="mt-4 text-lg font-semibold">Coudnt find what you asked</p>
+                    <p className="text-gray-500 mt-1">Try a New Scrape.</p>
+
+                    <Button className="mt-5 bg-linear-to-r from-purple-500 to-orange-400 text-white">
+                        Start Scraping
+                    </Button>
+                </div>
+            )}
+
             {/* Loaded */}
-            {!isEmpty && (
+            {filteredData.length > 0 && (
                 <>
                     <Card className="p-0">
                         <Table columns={columns} data={paginatedData} />
                     </Card>
 
-                    {/* Pagination */}
                     <Pagination
                         page={page}
                         totalPages={totalPages}
                         onChange={setPage}
                     />
-
-
                 </>
             )}
+
 
         </div>
     );
