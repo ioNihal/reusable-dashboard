@@ -6,6 +6,8 @@ import Table from "../components/ui/Table";
 import Card from "../components/ui/Card";
 import { FaFileCsv, FaFileExcel, FaSearch } from "react-icons/fa";
 import Toggle from "../components/ui/Toggle";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Pagination from "../components/ui/Pagination";
 
 export default function ScrapeHistory() {
 
@@ -16,16 +18,51 @@ export default function ScrapeHistory() {
     const [verifiedOnly, setVerifiedOnly] = useState(false);
 
     // Fake pagination limit
-    const perPage = 3;
+    const perPage = 5;
 
 
     useEffect(() => {
         const data = [
-            { id: 1, account: "@Travel", type: "Followings", totalEmails: 50, time: "2 hours ago", status: "completed" },
-            { id: 2, account: "@sarah.design", type: "Followers", totalEmails: 100, time: "21 hours ago", status: "completed" },
-            { id: 3, account: "@sarah.design", type: "Followers", totalEmails: 30, time: "2 days ago", status: "completed" },
-            { id: 4, account: "@sarah.design", type: "Followers", totalEmails: "-", time: "5 days ago", status: "canceled" }
+            { id: 1, account: "@mike.travel", type: "Followings", totalEmails: 42, time: "3 hours ago", status: "completed" },
+            { id: 2, account: "@design.with.sarah", type: "Followers", totalEmails: 120, time: "1 hour ago", status: "completed" },
+            { id: 3, account: "@crypto.akshay", type: "Followers", totalEmails: 18, time: "2 days ago", status: "completed" },
+            { id: 4, account: "@nature.vision", type: "Followings", totalEmails: "-", time: "5 days ago", status: "canceled" },
+
+            { id: 5, account: "@foodiesam", type: "Followers", totalEmails: 95, time: "4 hours ago", status: "completed" },
+            { id: 6, account: "@tech.arjun", type: "Followings", totalEmails: 63, time: "12 hours ago", status: "completed" },
+            { id: 7, account: "@minimal.jane", type: "Followers", totalEmails: 27, time: "3 days ago", status: "completed" },
+            { id: 8, account: "@john.travel", type: "Followings", totalEmails: 88, time: "30 min ago", status: "completed" },
+
+            { id: 9, account: "@artist.riya", type: "Followers", totalEmails: 150, time: "19 hours ago", status: "completed" },
+            { id: 10, account: "@marketingguru", type: "Followers", totalEmails: 12, time: "2 days ago", status: "completed" },
+            { id: 11, account: "@sam.codes", type: "Followings", totalEmails: 44, time: "1 day ago", status: "completed" },
+            { id: 12, account: "@travel.karthik", type: "Followings", totalEmails: 76, time: "6 hours ago", status: "completed" },
+
+            { id: 13, account: "@uiux.lara", type: "Followers", totalEmails: 103, time: "21 hours ago", status: "completed" },
+            { id: 14, account: "@cars.freak", type: "Followers", totalEmails: 9, time: "5 days ago", status: "completed" },
+            { id: 15, account: "@workout.max", type: "Followings", totalEmails: 30, time: "1 day ago", status: "completed" },
+            { id: 16, account: "@fashion.maya", type: "Followers", totalEmails: "-", time: "4 days ago", status: "canceled" },
+
+            { id: 17, account: "@doctor.lena", type: "Followers", totalEmails: 80, time: "2 hours ago", status: "completed" },
+            { id: 18, account: "@cyber.pranav", type: "Followings", totalEmails: 55, time: "10 hours ago", status: "completed" },
+            { id: 19, account: "@vlogs.manish", type: "Followers", totalEmails: 37, time: "3 days ago", status: "completed" },
+            { id: 20, account: "@gaming.adi", type: "Followers", totalEmails: "-", time: "6 days ago", status: "canceled" },
+
+            { id: 21, account: "@science.neha", type: "Followings", totalEmails: 92, time: "9 hours ago", status: "completed" },
+            { id: 22, account: "@cooking.radhika", type: "Followers", totalEmails: 101, time: "16 hours ago", status: "completed" },
+            { id: 23, account: "@himalayan.trek", type: "Followings", totalEmails: 14, time: "2 days ago", status: "completed" },
+            { id: 24, account: "@finance.shreya", type: "Followers", totalEmails: 66, time: "7 hours ago", status: "completed" },
+
+            { id: 25, account: "@camera.dev", type: "Followers", totalEmails: 130, time: "1 hour ago", status: "completed" },
+            { id: 26, account: "@petlover.anu", type: "Followers", totalEmails: 25, time: "3 days ago", status: "completed" },
+            { id: 27, account: "@sky.observer", type: "Followings", totalEmails: 49, time: "8 hours ago", status: "completed" },
+            { id: 28, account: "@coding.sachu", type: "Followers", totalEmails: 114, time: "12 hours ago", status: "completed" },
+
+            { id: 29, account: "@music.dev", type: "Followers", totalEmails: 39, time: "2 days ago", status: "completed" },
+            { id: 30, account: "@bot.design", type: "Followers", totalEmails: "-", time: "5 days ago", status: "canceled" },
+            { id: 31, account: "@travel.rio", type: "Followings", totalEmails: 57, time: "4 hours ago", status: "completed" },
         ];
+
 
         setScrapeData(data);
         setIsEmpty(data.length === 0);
@@ -101,10 +138,10 @@ export default function ScrapeHistory() {
             render: (row) =>
                 selectedRows.length === 0 ? (
                     <div className="flex flex-col gap-2">
-                        <Button variant="default" size="sm">
+                        <Button onClick={() => console.log(row)} variant="default" size="sm">
                             <FaFileCsv /> CSV
                         </Button>
-                        <Button variant="outline" size="sm">
+                        <Button onClick={() => console.log(row)} variant="outline" size="sm">
                             <FaFileExcel /> XLS
                         </Button>
                     </div>
@@ -182,38 +219,13 @@ export default function ScrapeHistory() {
                     </Card>
 
                     {/* Pagination */}
-                    <div className="flex justify-center gap-2 mt-6 flex-wrap">
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onChange={setPage}
+                    />
 
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            disabled={page === 1}
-                            onClick={() => setPage(page - 1)}
-                        >
-                            Prev
-                        </Button>
 
-                        {Array.from({ length: totalPages }, (_, i) => (
-                            <Button
-                                key={i}
-                                variant={page === i + 1 ? "primary" : "outline"}
-                                size="sm"
-                                onClick={() => setPage(i + 1)}
-                            >
-                                {i + 1}
-                            </Button>
-                        ))}
-
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            disabled={page === totalPages}
-                            onClick={() => setPage(page + 1)}
-                        >
-                            Next
-                        </Button>
-
-                    </div>
                 </>
             )}
 
