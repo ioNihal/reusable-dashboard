@@ -79,7 +79,7 @@ export default function ScrapeHistory() {
 
     const bulkActionBar = selectedRows.length > 0 && (
         <div className="flex items-center gap-3">
-            <Button variant="default" size="md" className="flex items-center gap-2">
+            <Button variant="accent" size="md" className="flex items-center gap-2">
                 <FaFileCsv /> Export CSV
             </Button>
 
