@@ -20,7 +20,7 @@ export default function Topbar({ onMenuClick }) {
             </div>
 
             <Button
-                variant="primary"
+                variant="secondary"
                 size="md"
                 hideInMobile={true}
                 onClick={handleUpgradeClick}

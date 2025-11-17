@@ -9,7 +9,7 @@ export default function Toggle({
             onClick={() => onChange(!checked)}
             className={`flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer border transition-all select-none
                     ${checked
-                    ? "bg-blue-600 text-white border-blue-600"
+                    ? "bg-purple-600 text-white border-purple-600"
                     : "bg-gray-100 text-gray-700 border-gray-200"}  ${className}`}>
             {/* switch visual */}
             <div

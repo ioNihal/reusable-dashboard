@@ -61,7 +61,7 @@ export default function ScrapeResultCard({
 
         {/* Export CSV */}
         <Button
-          variant="default"
+          variant="accent"
           size="sm"
           onClick={onExportCSV}
           className="flex items-center gap-2 lg:ml-auto"

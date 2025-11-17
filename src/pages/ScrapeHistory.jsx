@@ -132,10 +132,10 @@ export default function ScrapeHistory() {
             render: (row) =>
                 selectedRows.length === 0 ? (
                     <div className="flex flex-col gap-2">
-                        <Button onClick={() => console.log(row)} variant="default" size="sm">
+                        <Button onClick={() => console.log(row)} variant="accent" size="sm" className="rounded-sm">
                             <FaFileCsv /> CSV
                         </Button>
-                        <Button onClick={() => console.log(row)} variant="outline" size="sm">
+                        <Button onClick={() => console.log(row)} variant="outline" size="sm" className="rounded-sm">
                             <FaFileExcel /> XLS
                         </Button>
                     </div>
@@ -162,7 +162,7 @@ export default function ScrapeHistory() {
 
 
     return (
-        <div className="p-6 space-y-6 max-w-screen">
+        <div className="p-6 space-y-6 min-h-screen max-w-screen">
 
             {/* Header + Bulk Actions */}
             <div className="flex justify-between items-start flex-wrap gap-4">

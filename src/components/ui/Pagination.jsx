@@ -65,7 +65,7 @@ export default function Pagination({ page, totalPages, onChange }) {
                 ) : (
                     <Button
                         key={`p-${num}`}
-                        variant={page === num ? "primary" : "outline"}
+                        variant={page === num ? "accent" : "outline"}
                         size="sm"
                         onClick={() => onChange(num)}
                         className={`border-0 rounded-full! ${page === num ? "pointer-events-none" : ""}`}

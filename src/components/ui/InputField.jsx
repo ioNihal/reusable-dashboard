@@ -2,7 +2,7 @@ import { RxCheck, RxCross2 } from "react-icons/rx";
 
 const baseStyles = {
   default:
-    "border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+    "border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500",
   outline:
     "border-2 border-gray-400 bg-white focus:border-blue-600 focus:ring-0",
   shadow:

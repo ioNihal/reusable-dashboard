@@ -1,7 +1,7 @@
 
 
 const NotFound = () => (
-  <div className="flex min-h-screen items-center justify-center bg-white px-4">
+  <div className="flex min-h-screen items-center justify-center bg-violet-50 px-4">
     <div className="max-w-md text-center">
       <div className="w-full">
         <NoDataSvg />

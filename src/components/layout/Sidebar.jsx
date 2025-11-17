@@ -39,8 +39,8 @@ export default function Sidebar({
         bgColor: 'bg-white',
         borderColor: 'border-gray-200',
         hoverBg: 'hover:bg-gray-50',
-        activeColor: 'text-blue-600',
-        activeBg: 'bg-blue-50',
+        activeColor: 'text-[#8134AF]',
+        activeBg: 'bg-violet-50',
         ...theme,
     }
 
@@ -140,7 +140,7 @@ function SidebarItem({ icon, text, path }) {
                 className={({ isActive }) =>
                     `relative flex items-center ${expanded ? '' : 'justify-center'} px-3 py-2 font-medium rounded-md cursor-pointer transition-colors group
                     ${isActive
-                        ? `${theme?.activeBg || 'bg-blue-50'} ${theme?.activeColor || 'text-blue-600'} border-l-4 border-blue-600`
+                        ? `${theme?.activeBg || 'bg-violet-50'} ${theme?.activeColor || 'text-[#8134AF]'} border-l-4 border-[#8134AF]`
                         : `${theme?.hoverBg || 'hover:bg-gray-50'} text-gray-700`
                     }`
                 }

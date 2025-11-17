@@ -30,8 +30,8 @@ export default function DashboardLayout() {
     const sidebarTheme = {
         bgColor: 'bg-white',
         borderColor: 'border-gray-200',
-        activeColor: 'text-blue-600',
-        activeBg: 'bg-blue-50',
+        activeColor: 'text-[#8134AF]',
+        activeBg: 'bg-violet-50',
     }
 
     const handleUpgradeClick = () => {

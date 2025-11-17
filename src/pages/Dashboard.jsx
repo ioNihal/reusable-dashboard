@@ -65,7 +65,7 @@ export default function Dashboard() {
     ];
 
     return (
-        <div className="p-4 md:p-6 space-y-6 bg-gray-50 min-h-screen max-w-screen">
+        <div className="p-4 md:p-6 space-y-6 bg-violet-50 min-h-screen max-w-screen">
 
             {/* Page Header */}
             <header>
@@ -88,7 +88,7 @@ export default function Dashboard() {
                         {data.stats.map((s) => (
                             <Card key={s.label} className="px-4 py-3 flex flex-col justify-between gap-3">
                                 <h2 className="text-gray-900 font-bold">{s.label}</h2>
-                                <p className="text-blue-600 text-3xl font-semibold">{s.value}</p>
+                                <p className="text-[#8134AF] text-3xl font-semibold">{s.value}</p>
                                 {s.action && <Badge variant="action">{s.action}</Badge>}
                             </Card>
                         ))}

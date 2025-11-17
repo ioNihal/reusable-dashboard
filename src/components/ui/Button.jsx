@@ -40,7 +40,7 @@
  * @returns {JSX.Element} A styled button element
  */
 export default function Button({ children, variant = 'primary', size = '', hideInMobile = false, className = '', ...props }) {
-    const base = 'rounded-sm font-medium transition-all items-center justify-center gap-2 cursor-pointer'
+    const base = 'rounded-md font-medium transition-all items-center justify-center gap-2 cursor-pointer'
     const sizes = {
         sm: 'px-3 py-1 text-xs',
         md: 'px-4 py-2 text-sm',
@@ -48,11 +48,12 @@ export default function Button({ children, variant = 'primary', size = '', hideI
         full: 'w-full px-4 py-2 text-base',
     }
     const variants = {
-        primary: 'bg-blue-600 text-white hover:bg-blue-700',
-        secondary: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+        primary: 'bg-linear-to-r from-[#F58529] via-[#DD2A7B] via-[#8134AF] to-[#515BD4] text-white hover:opacity-90',
+        secondary: 'bg-[#EBAE00] text-white hover:bg-yellow-600',
         outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50 ',
         danger: 'bg-red-500 text-white hover:bg-red-600',
         success: 'bg-green-500 text-white hover:bg-green-600',
+        accent: 'bg-purple-600 text-white hover:bg-purple-600',
     }
 
     const sizeClass = sizes[size] || sizes.md
