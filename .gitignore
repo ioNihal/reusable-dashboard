@@ -22,12 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-
-# docs
-/src/components/layout/README.md
-/src/components/README.md
-/COMPLETION_SUMMARY.md
-/DOCUMENTATION_INDEX.md
-/PROJECT_DOCUMENTATION.md
-/QUICK_REFERENCE.md
