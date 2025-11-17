@@ -134,10 +134,10 @@ export default function ScrapeHistory() {
             render: (row) =>
                 selectedRows.length === 0 ? (
                     <div className="flex flex-col gap-2">
-                        <Button variant="accent" size="sm">
+                        <Button variant="accent" size="sm" onClick={() => console.log(row)}>
                             <FaFileCsv /> CSV
                         </Button>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" onClick={() => console.log(row)}>
                             <FaFileExcel /> XLS
                         </Button>
                     </div>
