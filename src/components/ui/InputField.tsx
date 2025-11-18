@@ -1,5 +1,7 @@
 import { RxCheck, RxCross2 } from "react-icons/rx";
 import type { InputFieldProps, InputVariant, MediaProps, SelectOption } from "../../types/inputField";
+import { forwardRef } from "react";
+
 
 const baseStyles: Record<InputVariant, string> = {
     default:
@@ -11,7 +13,10 @@ const baseStyles: Record<InputVariant, string> = {
     custom: "",
 };
 
-export default function InputField({
+const InputField = forwardRef<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement,
+    InputFieldProps
+>(function InputField({
     label,
     type = "text",
     variant = "default",
@@ -22,7 +27,7 @@ export default function InputField({
     disabled = false,
     className = "",
     ...props
-}: InputFieldProps) {
+}: InputFieldProps, ref) {
     const variantClasses = baseStyles[variant] || baseStyles.default;
 
     const stateClass = error
@@ -44,6 +49,7 @@ export default function InputField({
             {/* TEXTAREA */}
             {type === "textarea" && (
                 <textarea
+                    ref={ref as React.Ref<HTMLTextAreaElement>}
                     disabled={disabled}
                     className={commonProps}
                     rows={4}
@@ -54,6 +60,7 @@ export default function InputField({
             {/* SELECT */}
             {type === "select" && (
                 <select
+                    ref={ref as React.Ref<HTMLSelectElement>}
                     disabled={disabled}
                     className={commonProps}
                     {...(props as React.SelectHTMLAttributes<HTMLSelectElement>)}
@@ -69,23 +76,42 @@ export default function InputField({
 
             {/* MEDIA UPLOAD */}
             {type === "media" && (
-                <input
-                    type="file"
-                    disabled={disabled}
-                    className={commonProps + " cursor-pointer"}
-                    accept={
-                        "accept" in props
-                            ? (props as MediaProps).accept ?? "image/*,video/*"
-                            : "image/*,video/*"
-                    }
-                    {...(props as React.InputHTMLAttributes<HTMLInputElement>)}
-                />
+                <div className="w-full">
+                    {/* Hidden native file input */}
+                    <input
+                        ref={ref as React.Ref<HTMLInputElement>}
+                        id={props.id}
+                        type="file"
+                        disabled={disabled}
+                        className="hidden"
+                        accept={
+                            "accept" in props
+                                ? (props as MediaProps).accept ?? "image/*,video/*"
+                                : "image/*,video/*"
+                        }
+                        {...(props as React.InputHTMLAttributes<HTMLInputElement>)} />
+
+                    {/* Custom clickable upload button */}
+                    <label
+                        htmlFor={props.id}
+                        className={commonProps +
+                            " flex items-center gap-2 cursor-pointer"}>
+                        {"icon" in props && props.icon}
+                        <span className="text-gray-700 font-medium">
+                            {"placeholder" in props
+                                ? props.placeholder || "Click to upload media"
+                                : "Click to upload media"}
+                        </span>
+                    </label>
+                </div>
             )}
+
 
 
             {/* NORMAL INPUT TYPES */}
             {type !== "textarea" && type !== "select" && type !== "media" && (
                 <input
+                    ref={ref as React.Ref<HTMLInputElement>}
                     type={type}
                     disabled={disabled}
                     className={commonProps}
@@ -108,4 +134,8 @@ export default function InputField({
             )}
         </div>
     );
-}
+});
+
+InputField.displayName = "InputField";
+
+export default InputField;

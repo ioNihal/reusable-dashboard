@@ -9,18 +9,11 @@ export default function UserProfile({
 }: UserProfileProps) {
     return (
         <div
-            className={`
-        border-t border-gray-200 p-4 flex items-center 
-        ${expanded ? "gap-2" : ""}
-        cursor-pointer hover:bg-gray-100 transition-colors duration-200
-      `}
-        >
-            <div
-                className={`
-          w-10 h-10 rounded-full ${avatarColor}
-          flex items-center justify-center text-white font-bold text-sm shrink-0
-        `}
-            >
+            className={`border-t border-gray-200 p-4 flex items-center 
+                         ${expanded ? "gap-2" : ""}
+                        cursor-pointer hover:bg-gray-100 transition-colors duration-200`}>
+            <div className={`w-10 h-10 rounded-full ${avatarColor}
+                            flex items-center justify-center text-white font-bold text-sm shrink-0`}>
                 {avatarInitial}
             </div>
 

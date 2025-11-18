@@ -56,6 +56,9 @@ export interface MediaProps
     BaseProps {
     type: "media";
     accept?: string;
+    id: string;
+    icon?: React.ReactNode;
+    placeholder?: string;
 }
 
 
