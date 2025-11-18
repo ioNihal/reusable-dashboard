@@ -40,7 +40,7 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
 
                 <div className="flex flex-col">
                     <span className="text-sm font-medium text-gray-800">User Name</span>
-                    <span className="text-xs text-gray-500">Remaining 10 Credits</span>
+                    <span className="text-xs text-gray-500">Credits: 10/10</span>
                 </div>
             </div>
         </header>

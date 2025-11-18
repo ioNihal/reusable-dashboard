@@ -76,11 +76,11 @@ export default function Dashboard() {
     ];
 
     return (
-        <div className="p-4 md:p-6 space-y-6 bg-violet-50 min-h-screen max-w-screen">
+        <div className="p-4 md:p-6 space-y-6 bg-purple-50 min-h-screen max-w-screen">
 
             {/* Header */}
             <header>
-                <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
+                <h1 className="text-2xl font-semibold text-gray-900">Dashboard Overview</h1>
                 <p className="text-gray-500 text-sm md:text-base">
                     Welcome back! Here&apos;s what&apos;s happening today.
                 </p>

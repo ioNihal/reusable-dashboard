@@ -57,9 +57,9 @@ export default function NewScrape() {
     };
 
     return (
-        <div className="p-6 space-y-6 bg-violet-50 min-h-screen max-w-screen">
+        <div className="p-6 space-y-6 bg-purple-50 min-h-screen max-w-screen">
             <div>
-                <h1 className="text-2xl font-bold text-gray-900">Start Scraping</h1>
+                <h1 className="text-2xl font-semibold text-gray-900">Start Scraping</h1>
                 <p className="text-gray-500">
                     Target an account and scrape its followers or followings
                 </p>
