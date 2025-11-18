@@ -64,7 +64,7 @@ const initialData: ScrapeRow[] = [
 
 export default function ScrapeHistory() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [scrapeData, setScrapeData] = useState<ScrapeRow[]>(initialData);
+    const [scrapeData, _setScrapeData] = useState<ScrapeRow[]>(initialData);
     const [selectedRows, setSelectedRows] = useState<number[]>([]);
     const [page, setPage] = useState(1);
     const [verifiedOnly, setVerifiedOnly] = useState(false);
