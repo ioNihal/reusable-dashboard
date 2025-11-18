@@ -134,7 +134,7 @@ export default function Billing() {
                                 <Button
                                     disabled={plan.buttonDisabled}
                                     variant="accent"
-                                    className="mt-auto disabled:opacity-70 disabled:cursor-not-allowed" >
+                                    className="mt-auto disabled:bg-gray-200 disabled:text-gray-600 disabled:cursor-not-allowed" >
                                     {plan.button}
                                 </Button>
                             </div>
