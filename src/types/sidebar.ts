@@ -24,5 +24,4 @@ export interface SidebarProps {
     theme?: SidebarTheme;
     expandedWidth?: string;
     collapsedWidth?: string;
-    headerTitle?: string;
 }

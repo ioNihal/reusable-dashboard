@@ -56,7 +56,6 @@ export default function DashboardLayout() {
                 theme={sidebarTheme}
                 expandedWidth="w-64"
                 collapsedWidth="w-18"
-                headerTitle="Menu"
             />
 
             <div className="flex-1 flex flex-col">

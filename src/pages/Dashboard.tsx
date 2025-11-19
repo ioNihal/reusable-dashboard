@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Card from "../components/ui/Card";
@@ -8,10 +8,12 @@ import Button from "../components/ui/Button";
 import Badge from "../components/ui/Badge";
 
 import { FaPlus } from "react-icons/fa";
-import { HiDotsVertical } from "react-icons/hi";
+import { HiTrash } from "react-icons/hi";
+import ActionMenu from "../components/ui/ActionMenu";
 
 import { dashboardData, type DashboardData } from "../data/dashboardData";
 import useMockFetch from "../hooks/useMockFetch";
+import { useToast } from "../hooks/useToast";
 import type { Column } from "../types/table";
 
 type ScrapeRow = {
@@ -29,6 +31,22 @@ export default function Dashboard() {
     const { data, loading } = useMockFetch<DashboardData>(dashboardData);
 
     const handleStartNewScrape = () => navigate("/new");
+
+    // toast + delete handler used by the ActionMenu
+    const { showToast } = useToast();
+
+    const handleDelete = useCallback((row: ScrapeRow) => {
+        const ok = window.confirm(`Delete "${row.name}"? This cannot be undone.`);
+        if (!ok) return;
+
+        // placeholder for API delete
+        showToast({
+            title: "Deleted",
+            message: `${row.name} has been deleted.`,
+            variant: "success",
+            duration: 3000,
+        });
+    }, [showToast]);
 
     // Table column definitions
     const scrapeColumns: Column<ScrapeRow>[] = useMemo(
@@ -58,14 +76,20 @@ export default function Dashboard() {
             {
                 key: "actions",
                 title: "Actions",
-                render: () => (
-                    <button className="text-gray-400 hover:text-gray-600">
-                        <HiDotsVertical />
-                    </button>
+                render: (row) => (
+                    <ActionMenu
+                        items={[{
+                            key: "delete",
+                            label: "Delete",
+                            icon: <HiTrash />,
+                            danger: true,
+                            onClick: () => handleDelete(row),
+                        }]}
+                    />
                 ),
             },
         ],
-        []
+        [handleDelete]
     );
 
     const scrapeData: ScrapeRow[] = [
@@ -75,6 +99,7 @@ export default function Dashboard() {
         { name: "Fashion influencers", account: "@fashiontrends", status: "Completed", emails: 1234, verified: 892, date: "2 hours ago" },
     ];
 
+    // Inline ActionMenu removed — using reusable `ActionMenu` component instead
     return (
         <div className="p-4 md:p-6 space-y-6 bg-purple-50 min-h-screen max-w-screen">
 

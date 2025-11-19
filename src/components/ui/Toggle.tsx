@@ -30,7 +30,7 @@ export default function Toggle({
     const variantClasses: Record<string, string> = {
         default: checked
             ? "bg-purple-600 text-white border-purple-600"
-            : "bg-gray-100 text-gray-700 border-gray-200",
+            : "bg-white text-gray-700 border-gray-200",
 
         outline: checked
             ? "border-purple-600 text-purple-600 bg-transparent"

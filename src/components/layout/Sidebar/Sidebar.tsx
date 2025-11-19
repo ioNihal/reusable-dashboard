@@ -14,7 +14,6 @@ export default function Sidebar({
     theme = {},
     expandedWidth = "w-64",
     collapsedWidth = "w-18",
-    headerTitle = "Menu",
 }: SidebarProps) {
     const [expanded, setExpanded] = useState<boolean>(true);
 
@@ -47,11 +46,11 @@ export default function Sidebar({
                 <nav className="flex flex-col h-full">
                     {/* HEADER */}
                     <div
-                        className={`bg-white flex ${expanded ? "justify-between p-4" : "justify-center p-4"
+                        className={`bg-white flex ${expanded ? "justify-between py-1 px-4" : "justify-center p-4"
                             } items-center border-b ${finalTheme.borderColor}`}
                     >
                         {expanded && (
-                            <h2 className="text-lg font-bold truncate">{headerTitle}</h2>
+                            <img src="/logo.svg" alt="Logo" className="h-13" />
                         )}
 
                         <button

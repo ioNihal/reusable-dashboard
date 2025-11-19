@@ -199,10 +199,12 @@ export default function ScrapeHistory() {
 
                 {/* Verified toggle */}
                 <Toggle
+                    variant="default"
                     label="Verified only"
                     checked={verifiedOnly}
                     onChange={setVerifiedOnly}
-                    className="lg:ml-auto"
+                    trackColor="bg-gray-400"
+                    className="lg:ml-auto p-2 px-3 rounded-md border-2 border-gray-200"
                 />
 
                 {/* Type Select */}

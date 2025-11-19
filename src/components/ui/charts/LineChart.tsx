@@ -37,6 +37,9 @@ interface LineChartProps {
     gradientColor?: string;
     gridLines?: number;
     tooltipLabel?: string;
+    tooltipFillColor?: string;
+    tooltipTitleColor?: string;
+    tooltipBodyColor?: string;
     emptyMessage?: string;
 }
 
@@ -50,6 +53,9 @@ function LineChart({
     gridLines = 5,
     tooltipLabel = "Email",
     emptyMessage = "No data available",
+    tooltipFillColor = "#E9D5FF",
+    tooltipTitleColor = "#1f2937",
+    tooltipBodyColor = "#6b7280",
 }: LineChartProps) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -214,23 +220,23 @@ function LineChart({
 
                         {hoveredIndex === p.index && (
                             <g pointerEvents="none">
-                                <rect
-                                    x={p.x - 50}
-                                    y={p.y - 60}
-                                    width={100}
-                                    height={50}
-                                    rx={6}
-                                    fill="#f3f4f6"
-                                    stroke="#d1d5db"
-                                    strokeWidth={1}
-                                />
+                                        <rect
+                                            x={p.x - 50}
+                                            y={p.y - 60}
+                                            width={100}
+                                            height={50}
+                                            rx={6}
+                                            fill={tooltipFillColor}
+                                            stroke="#d1d5db"
+                                            strokeWidth={1}
+                                        />
                                 <text
                                     x={p.x}
                                     y={p.y - 38}
                                     textAnchor="middle"
                                     fontSize={12}
                                     fontWeight={600}
-                                    fill="#1f2937"
+                                    fill={tooltipTitleColor}
                                 >
                                     {p.name}
                                 </text>
@@ -240,7 +246,7 @@ function LineChart({
                                     textAnchor="middle"
                                     fontSize={12}
                                     fontWeight={500}
-                                    fill="#6b7280"
+                                    fill={tooltipBodyColor}
                                 >
                                     <tspan>{tooltipLabel}: </tspan>
                                     <tspan fill={lineColor} fontWeight={600}>
