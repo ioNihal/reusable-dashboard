@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, useWatch, type SubmitHandler } from "react-hook-form";
 
 import InputField from "../components/ui/InputField";
 import Button from "../components/ui/Button";
@@ -23,9 +23,13 @@ export default function NewScrape() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
+        control,
     } = useForm<ScrapeFormValues>();
+
+    const targetValue = useWatch({ control, name: "target" }) as string | undefined;
+    const emailLimitValue = useWatch({ control, name: "emailLimit" }) as number | undefined;
+    const scrapeTypeValue = useWatch({ control, name: "scrapeType" }) as "followings" | "followers" | undefined;
 
     const onSubmit: SubmitHandler<ScrapeFormValues> = () => {
         startScraping();
@@ -100,9 +104,7 @@ export default function NewScrape() {
                     placeholder="Enter Instagram account or Hashtag"
                     {...register("target", { required: "This field is required" })}
                     error={errors.target?.message}
-                    success={
-                        !errors.target && watch("target") ? "Looks good!" : ""
-                    }
+                        success={!errors.target && targetValue ? "Looks good!" : ""}
                 />
 
                 <div className="grid grid-cols-2 gap-6">
@@ -120,11 +122,7 @@ export default function NewScrape() {
                             },
                         })}
                         error={errors.emailLimit?.message}
-                        success={
-                            !errors.emailLimit && watch("emailLimit")
-                                ? "Valid number"
-                                : ""
-                        }
+                        success={!errors.emailLimit && emailLimitValue ? "Valid number" : ""}
                     />
 
                     {/* Scrape Type */}
@@ -140,11 +138,7 @@ export default function NewScrape() {
                             required: "Select one option",
                         })}
                         error={errors.scrapeType?.message}
-                        success={
-                            !errors.scrapeType && watch("scrapeType")
-                                ? "Selected"
-                                : ""
-                        }
+                        success={!errors.scrapeType && scrapeTypeValue ? "Selected" : ""}
                     />
                 </div>
 

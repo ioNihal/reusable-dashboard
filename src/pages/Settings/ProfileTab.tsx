@@ -82,7 +82,7 @@ export default function ProfileTab() {
     };
 
     return (
-        <>
+        <div className="space-y-4">
             <div>
                 <h3 className="text-xl font-semibold text-gray-900">Profile Information</h3>
                 <p className="text-gray-500 mt-1">
@@ -187,6 +187,6 @@ export default function ProfileTab() {
                     </div>
                 </form>
             </Card>
-        </>
+        </div>
     );
 }
