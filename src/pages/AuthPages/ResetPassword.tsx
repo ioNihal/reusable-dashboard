@@ -88,9 +88,9 @@ export default function ResetPassword() {
     <div className="min-h-screen relative flex items-center justify-center bg-linear-to-br from-purple-50 to-blue-50 px-4 py-8">
       
       <div className="w-full max-w-lg">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-white rounded-lg shadow-lg p-4">
           {/* Top Header */}
-          <div className="mb-8">
+          <div className="mb-8 px-5 py-3">
             <h2 className="text-2xl font-bold text-gray-900">IGScraping</h2>
             <h1 className="text-3xl font-bold text-gray-900 mt-4">
               Forgot Password?

@@ -54,10 +54,10 @@ export default function Signup() {
             <p className="text-gray-600 mt-2">Enter your credentials to access your account</p>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <InputField
-                label="First name"
+
                 type="text"
                 placeholder="First name"
                 variant="outline"
@@ -66,10 +66,10 @@ export default function Signup() {
                 {...register("firstName", {
                   required: "First name is required",
                 })}
-                className="focus:border-purple-600"
+                className="focus:border-purple-600 bg-transparent!"
               />
               <InputField
-                label="Last name"
+
                 type="text"
                 placeholder="Last name"
                 variant="outline"
@@ -78,12 +78,12 @@ export default function Signup() {
                 {...register("lastName", {
                   required: "Last name is required",
                 })}
-                className="focus:border-purple-600"
+                className="focus:border-purple-600 bg-transparent!"
               />
             </div>
 
             <InputField
-              label="Email"
+
               type="email"
               placeholder="Email"
               variant="outline"
@@ -96,11 +96,11 @@ export default function Signup() {
                   message: "Please enter a valid email",
                 },
               })}
-              className="focus:border-purple-600"
+              className="focus:border-purple-600 bg-transparent!"
             />
 
             <InputField
-              label="Password"
+
               type="password"
               placeholder="Enter your password..."
               variant="outline"
@@ -113,7 +113,7 @@ export default function Signup() {
                   message: "Password must be at least 6 characters",
                 },
               })}
-              className="focus:border-purple-600"
+              className="focus:border-purple-600 bg-transparent!"
             />
 
             <div className="flex items-center gap-2 mt-4">
@@ -147,8 +147,8 @@ export default function Signup() {
           </form>
 
           <div className="relative max-w-md mx-auto w-full">
-            <hr className="my-6 border-gray-300" />
-            <p className="absolute top-3.5 left-1/2 -translate-x-1/2 bg-[#E5E0FF] px-3 text-center text-sm text-gray-500">or register with</p>
+            <hr className="my-3 border-gray-300" />
+            <p className="absolute top-0.5 left-1/2 -translate-x-1/2 bg-[#E5E0FF] px-3 text-center text-sm text-gray-500">or register with</p>
           </div>
 
           <Button
