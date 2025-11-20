@@ -6,10 +6,16 @@ import ScrapeHistory from "./pages/ScrapeHistory";
 import NotFound from "./pages/NotFound";
 import Billing from "./pages/Billing";
 import Settings from "./pages/Settings/Settings";
+import Login from "./pages/AuthPages/Login";
+import Signup from "./pages/AuthPages/Signup";
+import ResetPassword from "./pages/AuthPages/ResetPassword";
 
 export default function App() {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/" element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="new" element={<NewScrape />} />
