@@ -45,10 +45,10 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[#F7D4E9] to-[#E2E6FF] px-4 py-8 grid place-items-center">
-      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-start gap-8 px-4 md:px-6">
-        <div className=" bg-[#D9D9D9] w-full md:w-1/2 h-[200px] md:h-[500px] rounded-md shadow-sm"></div>
+      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-8 px-4 md:px-6 md:h-[95%]">
+        <div className="bg-[#D9D9D9] w-full md:w-1/2 h-[200px] md:h-auto rounded-md shadow-sm"></div>
         <div className="w-full md:w-1/2 max-w-lg flex flex-col justify-center space-y-6 mx-auto md:mx-0">
-          <p className="text-sm font-semibold text-gray-700">IGScraping</p>
+          <div className=""><img className="h-[60px]" src="/logo-nobg.svg" alt="logo" /></div>
           <div>
             <h2 className="text-3xl font-extrabold text-gray-900">Create an account</h2>
             <p className="text-gray-600 mt-2">Enter your credentials to access your account</p>
