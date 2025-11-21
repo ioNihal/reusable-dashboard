@@ -46,7 +46,7 @@ export default function Login() {
                 <div className="w-full md:w-1/2 max-w-lg flex flex-col justify-center space-y-6 mx-auto md:mx-0">
                     <div className=""><img className="h-[60px]" src="/logo-nobg.svg" alt="logo" /></div>
                     <div>
-                        <h2 className="text-3xl font-extrabold text-gray-900">Log in to your account</h2>
+                        <h1 className="text-3xl font-extrabold text-gray-900">Log in to your account</h1>
                         <p className="text-gray-600 mt-2">Welcome back! Select method to log in:</p>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

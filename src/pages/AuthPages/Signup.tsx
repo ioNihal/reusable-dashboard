@@ -50,7 +50,7 @@ export default function Signup() {
         <div className="w-full md:w-1/2 max-w-lg flex flex-col justify-center space-y-6 mx-auto md:mx-0">
           <div className=""><img className="h-[60px]" src="/logo-nobg.svg" alt="logo" /></div>
           <div>
-            <h2 className="text-3xl font-extrabold text-gray-900">Create an account</h2>
+            <h1 className="text-3xl font-extrabold text-gray-900">Create an account</h1>
             <p className="text-gray-600 mt-2">Enter your credentials to access your account</p>
           </div>
 
