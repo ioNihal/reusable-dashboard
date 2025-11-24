@@ -31,32 +31,40 @@ export default function Sidebar({
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black/10 md:hidden z-20"
-                    onClick={toggleSidebar}
+                    onClick={() => {
+                        setExpanded(true);
+                        toggleSidebar();
+                    }}
                 />
             )}
 
             <aside
-                className={`
-          fixed md:static z-30 h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor
-                    }
-          ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-          ${expanded ? expandedWidth : collapsedWidth}
-        `}
-            >
+                className={`fixed md:static z-30 h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor}
+                ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+                 ${expanded ? expandedWidth : collapsedWidth} `}>
                 <nav className="flex flex-col h-full">
                     {/* HEADER */}
                     <div
-                        className={`bg-white flex ${expanded ? "justify-between py-1 px-4" : "justify-center p-4"
-                            } items-center border-b ${finalTheme.borderColor}`}
-                    >
+                        className={`bg-white flex ${expanded ? "justify-between py-1 px-4" : "justify-center p-4"} 
+                        items-center border-b ${finalTheme.borderColor}`}>
                         {expanded && (
                             <img src="/logo.svg" alt="Logo" className="h-13" />
                         )}
 
                         <button
-                            onClick={() => setExpanded((e) => !e)}
-                            className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
-                        >
+                            onClick={() => {
+                                if (window.innerWidth < 768) {
+                                    // On mobile sidebar will be expanded
+                                    // and toggle visibility instead of collapsing width.
+                                    setExpanded(true);
+                                    toggleSidebar();
+                                    return;
+                                }
+
+                                // On larger screens just toggle collapsed state.
+                                setExpanded((e) => !e);
+                            }}
+                            className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100">
                             {expanded ? <IoIosArrowBack /> : <IoIosArrowForward />}
                         </button>
                     </div>
