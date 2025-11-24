@@ -39,10 +39,10 @@ export default function Sidebar({
             )}
 
             <aside
-                className={`fixed md:static z-30 h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor}
+                className={`fixed md:static z-30 h-screen max-h-screen ${finalTheme.bgColor} border-r ${finalTheme.borderColor}
                 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
                  ${expanded ? expandedWidth : collapsedWidth} `}>
-                <nav className="flex flex-col h-full">
+                <nav className="flex flex-col h-full overflow-y-auto">
                     {/* HEADER */}
                     <div
                         className={`bg-white flex ${expanded ? "justify-between py-1 px-4" : "justify-center p-4"} 
