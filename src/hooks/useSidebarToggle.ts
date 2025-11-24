@@ -12,9 +12,6 @@ export default function useSidebarToggle() {
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return { isOpen, toggle };
